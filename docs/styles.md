@@ -2,19 +2,29 @@
 
 Use the [component ownership map](component-structure.md) to find a stylesheet.
 All component styles live in co-located `Component.module.css` files. Only
-`base.css`, `themes.css` and `motion.css` remain global, for page rules, shared
-paint and motion policy. Keep layout and state selectors with their component.
+`base.css`, `themes.css`, `motion.css`, `fonts.css` and the `theme-<id>.css`
+files remain global, for page rules, shared paint, motion policy, font faces and
+theme values. Keep layout and state selectors with their component.
 
 Use a component-named directory for a styled component and its private helpers,
 for example `AppGrid/AppGrid.tsx` with `AppGrid/AppGrid.module.css`. Small components
 without companion files can stay flat. Apply this structure as components are
 migrated; imports name the component file directly, without a barrel per folder.
 
-Keep theme paint in
-`launcher/css/themes.css`, which defines the default Classic values and the
-`body.glass-ui` overrides. Prefer role names such as `--settings-surface`,
-`--header-focus-surface` and `--menu-border` over new colour literals for shared
-surfaces, text, borders, focus and shadows. Component-specific artwork and input
+Keep theme paint in `launcher/css/themes.css`, which defines the default Classic
+values and the `body.glass-ui` overrides. Each further theme sets its variables
+in its own file named `launcher/css/theme-<id>.css`, on `body[data-theme]`, and
+keeps the Glass layout: `THEME_BASE` in `contracts/preferences.ts` says which.
+A theme's fonts ship with the launcher: `launcher/css/fonts.css` declares them, and
+each family sits in `launcher/fonts/<family>/` next to its licence, `OFL.txt`.
+On Home, give a surface that moves or changes with the focus a flat colour, or an
+image when it needs a gradient, as Gloss does for its tile sheen: a TV that rasters
+with its CPU draws a CSS gradient again on every frame while its layer animates.
+A blurred shadow belongs to the focused card only: at rest it would be drawn for
+every card.
+Prefer role names such as `--settings-surface`, `--header-focus-surface` and
+`--menu-border` over new colour literals for shared surfaces, text, borders,
+focus and shadows. Component-specific artwork and input
 state palettes stay with their component.
 
 A theme can also change a few values that components own. A component reads such

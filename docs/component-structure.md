@@ -447,6 +447,8 @@ keys and values also remain compatible.
 | Stylesheet                                                                                       | Owner                                                                         |
 | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
 | `themes.css`                                                                                     | Shared semantic paint tokens and Classic/Glass values                         |
+| `theme-<id>.css`                                                                                 | One further theme's variable values                                           |
+| `fonts.css`                                                                                      | Font faces of the theme fonts                                                 |
 | `motion.css`                                                                                     | Shared UI durations and reduced-motion policy                                 |
 | `settings/components/*/*.module.css`                                                             | Shared Settings focus, choices, group layout and headings                     |
 | `shared/components/SelectionIndicator/SelectionIndicator.module.css`                             | Shared selected-choice check and contrast badge                              |
